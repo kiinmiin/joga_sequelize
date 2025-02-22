@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    queryInterface.bulkInsert('Articles', [{
+    return queryInterface.bulkInsert('Articles', [{
       name: 'Introduction to Ashtanga',
       slug: 'introduction-to-ashtanga',
       image: 'ashtanga.jpg',
@@ -12,27 +12,25 @@ module.exports = {
       author_id: 1,
       createdAt: new Date(),
       updatedAt: new Date()
-    }]),
-    queryInterface.bulkInsert('Articles', [{
+    }, {
       name: 'Morning vinyasa flow routine',
       slug: 'morning-vinyasa-flow-routine',
       image: 'morning.jpg',
-      body: '<p>Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal.</p>',
+      body: '<p>Morning vinyasa flow routine description...</p>',
       published: '2020-04-14 15:02:42',
-      author_id: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }]),
-    queryInterface.bulkInsert('Articles', [{
-      name: 'Secrets of a yoga teacher',
-      slug: 'secrets-of-a-yoga-teacher',
-      image: 'yoga-teacher.jpg',
-      body: '<p>Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal. Mati Maasikas korjas maasikaid maal.<p>',
-      published: '2060-05-28 15:02:58',
       author_id: 1,
       createdAt: new Date(),
       updatedAt: new Date()
-    }])
+    }, {
+      name: 'Secrets of a yoga teacher',
+      slug: 'secrets-of-a-yoga-teacher',
+      image: 'yoga-teacher.jpg',
+      body: '<p>Secrets of a yoga teacher description...</p>',
+      published: '2020-05-28 15:02:58',
+      author_id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }]);
   },
 
   async down (queryInterface, Sequelize) {
