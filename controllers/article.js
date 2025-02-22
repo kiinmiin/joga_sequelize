@@ -36,8 +36,30 @@ const getArticleBySlug = (req, res) => {
     })
 }; 
 
+const getArticlesByAuthorId = (req, res) => {
+    console.log("Received request for author ID:", req.params.id); // Logging the author ID
+    const authorId = req.params.id; 
+    models.Author.findByPk(authorId, {
+        include: [{
+            model: models.Article,
+        }]
+    })
+    .then(author => {
+        if (!author) {
+            return res.status(404).json({ message: 'Author not found' });
+        }
+        console.log("Author object:", author); // Logging the author 
+        return res.status(200).json({ articles: author.Articles.map(article => article.dataValues) || [] }); 
+    })
+    .catch(error => {
+        console.error("Error fetching articles by author ID:", error); // Logging the error 
+        return res.status(500).send(error.message);
+    });
+}
+
 // export controller functions
 module.exports = {
     getAllArticles,
-    getArticleBySlug
+    getArticleBySlug,
+    getArticlesByAuthorId
 }
